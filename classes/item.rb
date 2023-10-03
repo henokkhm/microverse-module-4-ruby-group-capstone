@@ -7,7 +7,7 @@ class Item
   def initialize(publish_date, archived)
     unless publish_date.is_a?(Date)
       raise ArgumentError,
-            "Invalid date parameter: #{publish_date}. It must be a Date object."
+            "Invalid date parameter: #{publish_date}. publish_date must be a Date object."
     end
 
     @id = Random.rand(1..10_000)
