@@ -1,8 +1,15 @@
+require 'date'
+
 class Item
   attr_accessor :genre, :author, :source, :label, :publish_date
   attr_reader :id, :archived
 
   def initialize(publish_date, archived)
+    unless publish_date.is_a?(Date)
+      raise ArgumentError,
+            "Invalid date parameter: #{publish_date}. It must be a Date object."
+    end
+
     @id = Random.rand(1..10_000)
     @publish_date = publish_date || Date.today
     @archived = archived
