@@ -8,4 +8,11 @@ class Label
     @color = color
     @items = []
   end
+
+  def add_item(item)
+    return unless item.instance_of?(Item)
+
+    items << item
+    item.label = self
+  end
 end
