@@ -1,14 +1,16 @@
 require_relative 'lib/main_menu'
+require_relative 'lib/console_manager'
 
 module Main
   include MainMenu
+  console_manager = ConsoleManager.new
   puts '🎉 Welcome to the My Catalog App! 🎉'
   loop do
     main_menu_choice = MainMenu.prompt
 
     case main_menu_choice
     when '1'
-      puts 'performing action #1'
+      console_manager.add_book
     when '2'
       puts 'performing action #2'
     when '3'
