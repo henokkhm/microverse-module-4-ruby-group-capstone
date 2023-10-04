@@ -1,11 +1,9 @@
-require_relative 'item'
-
 class Game
-  attr_accessor :title, :platform, :last_played_at
+  attr_accessor :title, :multiplayer, :last_played_at
 
-  def initialize(title, platform, last_played_at)
+  def initialize(title, multiplayer, last_played_at)
     @title = title
-    @platform = platform
+    @multiplayer = multiplayer
     @last_played_at = last_played_at
   end
 
