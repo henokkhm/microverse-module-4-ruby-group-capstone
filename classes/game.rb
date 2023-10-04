@@ -2,7 +2,7 @@ class Game < Item
   attr_accessor :title, :multiplayer, :last_played_at
 
   def initialize(title, multiplayer, last_played_at)
-    super()  # Call the parent class constructor
+    super()
     @title = title
     @multiplayer = multiplayer
     @last_played_at = last_played_at
