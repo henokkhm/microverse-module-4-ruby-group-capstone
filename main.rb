@@ -34,7 +34,7 @@ module Main
     when '12'
       puts 'performing action #12'
     when '13'
-      puts 'Exiting...'
+      console_manager.exit
       break
     end
   end

@@ -61,4 +61,7 @@ class ConsoleManager
   # list all sources
 
   # exit app
+  def exit
+    puts 'Thank you for using this app!'
+  end
 end
