@@ -7,9 +7,9 @@ class Author
   end
 
   def add_item(item)
-    if item.can_be_archived?
-      @items << item
-      item.set_author(self)
-    end
+    return unless item.can_be_archived?
+
+    @items << item
+    item.set_author(self)
   end
 end
