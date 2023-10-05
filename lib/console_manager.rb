@@ -1,6 +1,5 @@
 require 'date'
 require_relative 'books_manager'
-require_relative '../classes/label'
 
 class ConsoleManager
   def initialize
@@ -57,8 +56,6 @@ class ConsoleManager
 
   # list all labels
   def list_all_labels
-    @books_manager.books_list[0].label = Label.new('Label_1', 'green')
-    @books_manager.books_list[2].label = Label.new('Label_3', 'blue')
     labels = @books_manager.books_list.map(&:label).compact
     # TODO: add labels also from other catalog item types
     if labels.length.positive?
