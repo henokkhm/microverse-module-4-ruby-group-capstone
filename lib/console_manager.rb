@@ -6,6 +6,9 @@ class ConsoleManager
   def initialize
     @books_manager = BooksManager.new
     @labels_manager = LabelsManager.new
+
+    # load data from files if files exist
+    @labels_manager.load_from_file
   end
 
   # add a book
