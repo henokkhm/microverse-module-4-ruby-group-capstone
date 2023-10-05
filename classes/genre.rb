@@ -1,4 +1,3 @@
-
 class Genre
   attr_accessor :name
   attr_reader :id, :items
@@ -14,6 +13,4 @@ class Genre
     @items << item
     item.genre = self
   end
-  
-  
 end
