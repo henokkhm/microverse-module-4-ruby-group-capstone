@@ -68,7 +68,8 @@ class ConsoleManager
       puts 'Here are all the books in your catalog:'
       books.each_with_index do |book, _index|
         puts "Publisher: #{book.publisher}, Cover state: #{book.cover_state}, " \
-             "Publish Date: #{book.publish_date}, Archived: #{book.archived ? 'Yes' : 'No'}"
+             "Publish Date: #{book.publish_date}, Archived: #{book.archived ? 'Yes' : 'No'}," \
+             "Label: #{book.label ? book.label.title : 'N/A'}"
       end
     else
       puts "\nThere are no registered books."
