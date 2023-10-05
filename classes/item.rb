@@ -44,6 +44,6 @@ class Item
   private
 
   def extract_id(item)
-    item&.respond_to?(:key?) && item.key?(:id) ? item[:id] : nil
+    item.respond_to?(:key?) && item&.key?(:id) ? item[:id] : nil
   end
 end
