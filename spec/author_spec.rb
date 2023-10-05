@@ -1,10 +1,10 @@
 require_relative '../classes/author'
 
 describe Author do
-  let(:author) { Author.new("Stephen King") }
+  let(:author) { Author.new('Stephen King') }
 
   it "can add items to the author's collection when they can be archived" do
-    item = double("item", can_be_archived?: true)
+    item = double('item', can_be_archived?: true)
     allow(item).to receive(:set_author)
 
     author.add_item(item)
@@ -13,7 +13,7 @@ describe Author do
   end
 
   it "does not add items to the author's collection when they cannot be archived" do
-    item = double("item", can_be_archived?: false)
+    item = double('item', can_be_archived?: false)
     allow(item).to receive(:set_author)
 
     author.add_item(item)
