@@ -5,6 +5,7 @@ module Main
   include MainMenu
   console_manager = ConsoleManager.new
   puts '🎉 Welcome to the My Catalog App! 🎉'
+  puts 'This application lets you keep track of all your 📖 books, 💿 music albums, 🎥 movies, and 🎮 games.'
   loop do
     main_menu_choice = MainMenu.prompt
 
@@ -12,7 +13,7 @@ module Main
     when '1'
       console_manager.add_book
     when '2'
-      puts 'performing action #2'
+      console_manager.list_all_books
     when '3'
       puts 'performing action #3'
     when '4'
