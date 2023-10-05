@@ -28,4 +28,22 @@ class Item
 
     @archived = true
   end
+
+  def to_hash
+    {
+      'id' => @id,
+      'publish_date' => @publish_date,
+      'archived' => @archived,
+      'genre' => extract_id(genre),
+      'author' => extract_id(author),
+      'source' => extract_id(source),
+      'label' => extract_id(label)
+    }
+  end
+
+  private
+
+  def extract_id(item)
+    item&.key?(:id) ? item[:id] : nil
+  end
 end
