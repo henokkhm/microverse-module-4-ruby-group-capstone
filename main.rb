@@ -28,7 +28,7 @@ module Main
     when '9'
       puts 'performing action #9'
     when '10'
-      puts 'performing action #10'
+      console_manager.list_all_labels
     when '11'
       puts 'performing action #11'
     when '12'

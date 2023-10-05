@@ -1,5 +1,6 @@
 require 'date'
 require_relative 'books_manager'
+require_relative '../classes/label'
 
 class ConsoleManager
   def initialize
@@ -55,6 +56,20 @@ class ConsoleManager
   # list all genres
 
   # list all labels
+  def list_all_labels
+    @books_manager.books_list[0].label = Label.new('Label_1', 'green')
+    @books_manager.books_list[2].label = Label.new('Label_3', 'blue')
+    labels = @books_manager.books_list.map(&:label).compact
+    # TODO: add labels also from other catalog item types
+    if labels.length.positive?
+      puts 'Here are all the labels in your catalog:'
+      labels.each_with_index do |label, _index|
+        puts "Title: #{label.title}, Color: #{label.color}"
+      end
+    else
+      puts "\nThere are no labels in your catalog."
+    end
+  end
 
   # list all authors
 
