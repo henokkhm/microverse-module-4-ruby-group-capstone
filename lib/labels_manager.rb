@@ -16,13 +16,13 @@ class LabelsManager
 
   def save_to_file
     labels_data = @labels_list.map(&:to_hash)
-    File.open('labels.json', 'w') do |file|
+    File.open('json/labels.json', 'w') do |file|
       file.puts JSON.generate(labels_data)
     end
   end
 
   def load_from_file
-    return unless File.exist?('labels.json')
+    return unless File.exist?('json/labels.json')
 
     label_data = JSON.parse(File.read('labels.json'))
     label_data.each do |label_hash|
