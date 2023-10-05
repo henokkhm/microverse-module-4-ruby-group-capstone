@@ -15,11 +15,11 @@ module Main
     when '2'
       console_manager.list_all_books
     when '3'
-      puts 'performing action #3'
+      console_manager.add_music
     when '4'
-      puts 'performing action #4'
+      console_manager.list_all_music
     when '5'
-      puts 'performing action #5'
+      puts 'performing List of genre #5'
     when '6'
       puts 'performing action #6'
     when '7'

@@ -1,5 +1,6 @@
 module MainMenu
   @menu = '
+This application lets you keep track of all your 📖 books, 💿 music albums, 🎥 movies, and 🎮 games.
 Please select an action from the list below:
 
 1. Add a book
@@ -7,12 +8,13 @@ Please select an action from the list below:
 
 3. Add a music album
 4. List all music albums
+5. List all genres
 
-5. Add a movie
-6. List all movies
+6. Add a movie
+7. List all movies
 
-7. Add a game
-8. List of games
+8. Add a game
+9. List of games
 
 9. List all genres
 10. List all labels
@@ -26,7 +28,7 @@ Please select an action from the list below:
   def self.prompt
     puts @menu
     choice = gets.chomp
-    until %w[1 2 3 4 5 6 7 8 9 10 11 12 13].include?(choice)
+    until %w[1 2 3 4 5 6 7 8 9 10 11 12 13 14].include?(choice)
       puts 'Please enter a valid choice:'
       choice = gets.chomp
     end

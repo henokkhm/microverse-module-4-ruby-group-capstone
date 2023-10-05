@@ -1,9 +1,11 @@
 require 'date'
 require_relative 'books_manager'
+require_relative 'music_manager'
 
 class ConsoleManager
   def initialize
     @books_manager = BooksManager.new
+    @music_manager = MusicManager.new
   end
 
   # add a book
@@ -53,8 +55,51 @@ class ConsoleManager
   end
 
   # add a music album
+  def add_music
+    # Prompt
+    puts
+    puts 'Please provide the details of the Music Album.'
+
+    print 'Publish Date: '
+    publish_date = gets.chomp
+
+    # Input validation
+    date_pattern = %r{\A\d{4}/\d{2}/\d{2}\z}
+    until publish_date.match?(date_pattern)
+      puts "\nPlease enter the date in this format: YYYY/MM/DD"
+      publish_date = gets.chomp
+    end
+    # parse publish_date into Date object
+    publish_date = Date.parse(publish_date)
+
+    print 'Archived (Y/N): '
+    archived = gets.chomp.upcase
+
+    print 'On Spotify (Y/N): '
+    on_spotify = gets.chomp.upcase
+
+    # Action
+    @music_manager.add_music(publish_date, on_spotify == 'Y', archived == 'Y')
+
+    # Feedback
+    puts "\nMusic Album has been registered successfully.\n\n"
+  end
+
+  # list all books
 
   # list all music albums
+  def list_all_music
+    musics = @music_manager.music_list
+    if musics.length.positive?
+      puts 'Here are all the Music Album in your catalog:'
+      musics.each_with_index do |music, _index|
+        puts " On spotify: #{music.on_spotify ? 'Yes' : 'No'}, " \
+             "Publish Date: #{music.publish_date}, Archived: #{music.archived ? 'Yes' : 'No'}"
+      end
+    else
+      puts "\nThere are no registered Music Album."
+    end
+  end
 
   # add a movie
 
