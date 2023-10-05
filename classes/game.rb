@@ -1,7 +1,8 @@
-class Game
+class Game < Item
   attr_accessor :title, :multiplayer, :last_played_at
 
-  def initialize(title, multiplayer, last_played_at)
+  def initialize(title, multiplayer, last_played_at, publish_date, archived)
+    super(publish_date, archived)
     @title = title
     @multiplayer = multiplayer
     @last_played_at = last_played_at
