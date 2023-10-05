@@ -11,6 +11,20 @@ class ConsoleManager
     # Note: the order of the following statements is important
     @labels_manager.load_from_file
     @books_manager.load_from_file
+
+    # Restore the relationship between Books and Labels
+    labels = @labels_manager.labels_list
+    books = @books_manager.books_list
+
+    return unless labels.length.positive?
+
+    books.each do |book|
+      next if book.label.nil?
+
+      book_label = labels.find { |label| label.id == book.label }
+      book.label = book_label
+      book_label.add_item(book)
+    end
   end
 
   # add a book
@@ -68,7 +82,7 @@ class ConsoleManager
       puts 'Here are all the books in your catalog:'
       books.each_with_index do |book, _index|
         puts "Publisher: #{book.publisher}, Cover state: #{book.cover_state}, " \
-             "Publish Date: #{book.publish_date}, Archived: #{book.archived ? 'Yes' : 'No'}," \
+             "Publish Date: #{book.publish_date}, Archived: #{book.archived ? 'Yes' : 'No'}, " \
              "Label: #{book.label ? book.label.title : 'N/A'}"
       end
     else

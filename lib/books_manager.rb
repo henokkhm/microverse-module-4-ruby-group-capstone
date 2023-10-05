@@ -33,6 +33,13 @@ class BooksManager
       archived = book_hash['archived'] == 'true'
       book = add_book(book_hash['publisher'], book_hash['cover_state'], publish_date, archived)
       book.id = book_hash['id']
+
+      # Temoporarily store ids of properties, the associations will be restored once
+      # the .json files for Genre, Author, Source, and Label are loaded
+      book.genre = book_hash['genre_id']
+      book.author = book_hash['author_id']
+      book.source = book_hash['source_id']
+      book.label = book_hash['label_id']
     end
   end
 end
