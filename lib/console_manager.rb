@@ -92,9 +92,9 @@ class ConsoleManager
   def add_genre(music)
     # Add book label?
     print 'Do you want to add a genre to this book? (Y/N)'
-    want_label = gets.chomp.upcase
+    want_genre = gets.chomp.upcase
 
-    return unless want_label == 'Y'
+    return unless want_genre == 'Y'
 
     print 'Genre name: '
     genre_name = gets.chomp
