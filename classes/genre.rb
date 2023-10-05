@@ -1,4 +1,3 @@
-require 'item'
 
 class Genre
   attr_accessor :name
@@ -15,4 +14,6 @@ class Genre
     @items << item
     item.genre = self
   end
+  
+  
 end
