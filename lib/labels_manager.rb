@@ -15,16 +15,18 @@ class LabelsManager
   end
 
   def save_to_file
+    file_path = 'json/labels.json'
     labels_data = @labels_list.map(&:to_hash)
-    File.open('json/labels.json', 'w') do |file|
-      file.puts JSON.generate(labels_data)
+    File.open(file_path, 'w') do |file|
+      file.puts JSON.pretty_generate(labels_data)
     end
   end
 
   def load_from_file
-    return unless File.exist?('json/labels.json')
+    file_path = 'json/labels.json'
+    return unless File.exist?(file_path)
 
-    label_data = JSON.parse(File.read('labels.json'))
+    label_data = JSON.parse(File.read(file_path))
     label_data.each do |label_hash|
       label = add_label(label_hash['title'], label_hash['color'])
       label.id = label_hash['id']
