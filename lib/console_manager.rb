@@ -8,7 +8,9 @@ class ConsoleManager
     @labels_manager = LabelsManager.new
 
     # load data from files if files exist
+    # Note: the order of the following statements is important
     @labels_manager.load_from_file
+    @books_manager.load_from_file
   end
 
   # add a book
@@ -108,6 +110,7 @@ class ConsoleManager
   def exit
     puts 'Saving data...'
     @labels_manager.save_to_file
+    @books_manager.save_to_file
     puts 'Your catalog has been saved.'
     puts 'Thank you for using this app!'
   end

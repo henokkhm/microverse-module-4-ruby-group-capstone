@@ -1,3 +1,4 @@
+require 'date'
 require_relative '../classes/book'
 
 class BooksManager
@@ -11,5 +12,27 @@ class BooksManager
     book = Book.new(publisher, cover_state, publish_date, archived)
     @books_list.push(book)
     book
+  end
+
+  def save_to_file
+    file_path = 'json/books.json'
+    puts 'saving books'
+    books_data = @books_list.map(&:to_hash)
+    File.open(file_path, 'w') do |file|
+      file.puts JSON.pretty_generate(books_data)
+    end
+  end
+
+  def load_from_file
+    file_path = 'json/books.json'
+    return unless File.exist?(file_path)
+
+    book_data = JSON.parse(File.read(file_path))
+    book_data.each do |book_hash|
+      publish_date = Date.parse(book_hash['publish_date'])
+      archived = book_hash['archived'] == 'true'
+      book = add_book(book_hash['publisher'], book_hash['cover_state'], publish_date, archived)
+      book.id = book_hash['id']
+    end
   end
 end
