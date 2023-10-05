@@ -103,6 +103,9 @@ class ConsoleManager
 
   # exit app
   def exit
+    puts 'Saving data...'
+    @labels_manager.save_to_file
+    puts 'Your catalog has been saved.'
     puts 'Thank you for using this app!'
   end
 end
