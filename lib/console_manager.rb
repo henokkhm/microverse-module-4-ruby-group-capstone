@@ -39,6 +39,18 @@ class ConsoleManager
   end
 
   # list all books
+  def list_all_books
+    books = @books_manager.books_list
+    if books.length.positive?
+      puts 'Here are all the books in your catalog:'
+      books.each_with_index do |book, _index|
+        puts "Publisher: #{book.publisher}, Cover state: #{book.cover_state}, " \
+             "Publish Date: #{book.publish_date}, Archived: #{book.archived ? 'Yes' : 'No'}"
+      end
+    else
+      puts "\nThere are no registered books."
+    end
+  end
 
   # add a music album
 

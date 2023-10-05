@@ -12,7 +12,7 @@ module Main
     when '1'
       console_manager.add_book
     when '2'
-      puts 'performing action #2'
+      console_manager.list_all_books
     when '3'
       puts 'performing action #3'
     when '4'
