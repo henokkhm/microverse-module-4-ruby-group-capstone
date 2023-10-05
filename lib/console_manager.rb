@@ -1,9 +1,11 @@
 require 'date'
 require_relative 'books_manager'
+require_relative 'labels_manager'
 
 class ConsoleManager
   def initialize
     @books_manager = BooksManager.new
+    @labels_manager = LabelsManager.new
   end
 
   # add a book
@@ -31,11 +33,27 @@ class ConsoleManager
     print 'Archived (Y/N): '
     archived = gets.chomp.upcase
 
-    # Action
-    @books_manager.add_book(publisher, cover_state, publish_date, archived == 'Y')
+    new_book = @books_manager.add_book(publisher, cover_state, publish_date, archived == 'Y')
 
+    add_label(new_book)
     # Feedback
     puts "\nBook has been registered successfully.\n\n"
+  end
+
+  def add_label(book)
+    # Add book label?
+    print 'Do you want to add a label to this book? (Y/N)'
+    want_label = gets.chomp.upcase
+
+    return unless want_label == 'Y'
+
+    print 'Label title: '
+    label_title = gets.chomp
+    print 'Label color: '
+    label_color = gets.chomp
+
+    new_label = @labels_manager.add_label(label_title, label_color)
+    book.label = new_label
   end
 
   # list all books
@@ -68,8 +86,7 @@ class ConsoleManager
 
   # list all labels
   def list_all_labels
-    labels = @books_manager.books_list.map(&:label).compact
-    # TODO: add labels also from other catalog item types
+    labels = @labels_manager.labels_list
     if labels.length.positive?
       puts 'Here are all the labels in your catalog:'
       labels.each_with_index do |label, _index|
