@@ -1,5 +1,6 @@
 # genre_spec.rb
 require_relative '../classes/genre'
+require_relative '../classes/item'
 
 describe Genre do
   let(:genre_name) { 'Rock' }
