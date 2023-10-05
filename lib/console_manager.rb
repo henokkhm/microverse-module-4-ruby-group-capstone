@@ -1,11 +1,13 @@
 require 'date'
 require_relative 'books_manager'
 require_relative 'music_manager'
+require_relative 'genre_manager'
 
 class ConsoleManager
   def initialize
     @books_manager = BooksManager.new
     @music_manager = MusicManager.new
+    @genres_manager = GenreManager.new
   end
 
   # add a book
@@ -79,10 +81,26 @@ class ConsoleManager
     on_spotify = gets.chomp.upcase
 
     # Action
-    @music_manager.add_music(publish_date, on_spotify == 'Y', archived == 'Y')
+    new_music = @music_manager.add_music(publish_date, on_spotify == 'Y', archived == 'Y')
+
+    add_genre(new_music)
 
     # Feedback
     puts "\nMusic Album has been registered successfully.\n\n"
+  end
+
+  def add_genre(music)
+    # Add book label?
+    print 'Do you want to add a genre to this book? (Y/N)'
+    want_genre = gets.chomp.upcase
+
+    return unless want_genre == 'Y'
+
+    print 'Genre name: '
+    genre_name = gets.chomp
+
+    new_genre = @genres_manager.add_genre(genre_name)
+    music.genre = new_genre
   end
 
   # list all books
@@ -110,6 +128,18 @@ class ConsoleManager
   # list of games
 
   # list all genres
+  def list_all_genres
+    genres = @music_manager.music_list.map(&:genre).compact
+    # TODO: add genres also from other catalog item types
+    if genres.length.positive?
+      puts 'Here are all the genres in your catalog:'
+      genres.each_with_index do |genre, _index|
+        puts "Genre : #{genre.name}"
+      end
+    else
+      puts "\nThere are no genres in your catalog."
+    end
+  end
 
   # list all labels
   def list_all_labels

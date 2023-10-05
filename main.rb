@@ -27,7 +27,7 @@ module Main
     when '8'
       puts 'performing action #8'
     when '9'
-      puts 'performing action #9'
+      console_manager.list_all_genres
     when '10'
       console_manager.list_all_labels
     when '11'
