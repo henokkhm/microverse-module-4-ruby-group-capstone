@@ -110,6 +110,18 @@ class ConsoleManager
   # list of games
 
   # list all genres
+  def list_all_genres
+    genres = @music_manager.music_list.map(&:genre).compact
+    # TODO: add labels also from other catalog item types
+    if genres.length.positive?
+      puts 'Here are all the genres in your catalog:'
+      genres.each_with_index do |genre, _index|
+        puts "Genre : #{genre.name}"
+      end
+    else
+      puts "\nThere are no genres in your catalog."
+    end
+  end
 
   # list all labels
   def list_all_labels
