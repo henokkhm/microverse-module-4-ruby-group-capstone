@@ -4,12 +4,12 @@ require_relative '../classes/game'
 describe Game do
   let(:publish_date) { Date.new(2010, 1, 1) }
   let(:archived) { false }
-  let(:game) { Game.new('Game Title', 'Multiplayer', (Time.now - 3 * 365 * 24 * 60 * 60), publish_date, archived) }
+  let(:game) { Game.new('Game Title', 'Multiplayer', (Time.now - (3 * 365 * 24 * 60 * 60)), publish_date, archived) }
 
   it 'inherits properties from Item class' do
     expect(game.title).to eq('Game Title')
     expect(game.multiplayer).to eq('Multiplayer')
-    expect(game.last_played_at).to be_within(1).of(Time.now - 3 * 365 * 24 * 60 * 60)
+    expect(game.last_played_at).to be_within(1).of(Time.now - (3 * 365 * 24 * 60 * 60))
     expect(game.publish_date).to eq(publish_date)
     expect(game.archived).to eq(archived)
   end
