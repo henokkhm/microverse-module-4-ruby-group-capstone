@@ -18,7 +18,6 @@ class Book < Item
   def to_hash
     item_hash = super
     book_hash = {
-      'id' => @id,
       'publisher' => @publisher,
       'cover_state' => @cover_state
     }

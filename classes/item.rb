@@ -1,8 +1,8 @@
 require 'date'
 
 class Item
-  attr_accessor :genre, :author, :source, :label, :publish_date
-  attr_reader :id, :archived
+  attr_accessor :id, :genre, :author, :source, :label, :publish_date
+  attr_reader :archived
 
   def initialize(publish_date, archived)
     unless publish_date.is_a?(Date)
@@ -44,6 +44,6 @@ class Item
   private
 
   def extract_id(item)
-    item&.key?(:id) ? item[:id] : nil
+    item&.respond_to?(:key?) && item.key?(:id) ? item[:id] : nil
   end
 end
