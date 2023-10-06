@@ -3,7 +3,7 @@ require_relative '../classes/author'
 describe Author do
   let(:author) { Author.new('Stephen', 'King', publish_date: Date.new(2000, 1, 1), archived: false) }
 
-  it "has a full name" do
+  it 'has a full name' do
     expect(author.full_name).to eq('Stephen King')
   end
 
