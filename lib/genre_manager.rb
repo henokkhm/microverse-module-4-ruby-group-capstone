@@ -26,11 +26,9 @@ class GenreManager
     return unless File.exist?(file_path)
 
     genre_data = JSON.parse(File.read(file_path))
-    p genre_data.inspect
     genre_data.each do |genre_hash|
       genre = add_genre(genre_hash['name'])
       genre.id = genre_hash['id']
-      p genre.inspect
     end
   end
 end

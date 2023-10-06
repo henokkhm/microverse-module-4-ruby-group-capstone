@@ -15,10 +15,11 @@ class ConsoleManager
     # Note: the order of the following statements is important
     @labels_manager.load_from_file
     @books_manager.load_from_file
-
     @genres_manager.load_from_file
     @music_manager.load_from_file
+  end
 
+  def restore_label_book_relation
     # Restore the relationship between Books and Labels
     labels = @labels_manager.labels_list
     books = @books_manager.books_list
@@ -32,7 +33,10 @@ class ConsoleManager
       book.label = book_label
       book_label.add_item(book)
     end
+  end
 
+  def restore_music_genre_relation
+    # Restore the relationship between Music Albums and Genre
     genres = @genres_manager.genres_list
     musics = @music_manager.music_list
     return unless genres.length.positive?
