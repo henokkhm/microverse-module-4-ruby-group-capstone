@@ -14,4 +14,14 @@ class Book < Item
 
     false
   end
+
+  def to_hash
+    item_hash = super
+    book_hash = {
+      'publisher' => @publisher,
+      'cover_state' => @cover_state
+    }
+
+    item_hash.merge(book_hash)
+  end
 end

@@ -1,8 +1,8 @@
 require 'date'
 
 class Item
-  attr_accessor :genre, :author, :source, :label, :publish_date
-  attr_reader :id, :archived
+  attr_accessor :id, :genre, :author, :source, :label, :publish_date
+  attr_reader :archived
 
   def initialize(publish_date, archived)
     unless publish_date.is_a?(Date)
@@ -27,5 +27,25 @@ class Item
     return unless can_be_archived?
 
     @archived = true
+  end
+
+  def to_hash
+    {
+      'id' => @id,
+      'publish_date' => @publish_date,
+      'archived' => @archived,
+      'genre_id' => extract_id(genre),
+      'author_id' => extract_id(author),
+      'source_id' => extract_id(source),
+      'label_id' => extract_id(label)
+    }
+  end
+
+  private
+
+  def extract_id(item)
+    return nil if item.nil?
+
+    item.id
   end
 end
