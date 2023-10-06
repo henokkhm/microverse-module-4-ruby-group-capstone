@@ -15,14 +15,18 @@ class ConsoleManager
     @genres_manager = GenreManager.new
     @author_manager = AuthorManager.new
 
-    # load data from files if files exist
+    # Load data from files if files exist
     # Note: the order of the following statements is important
     @labels_manager.load_from_file
     @books_manager.load_from_file
+    @game_manager.load_games_from_json('json/games.json') # Load game data from JSON file
+    @author_manager.load_authors_from_json('json/authors.json')
 
     # Restore the relationship between Books and Labels
     labels = @labels_manager.labels_list
     books = @books_manager.books_list
+    games = @game_manager.games_list
+    authors = @author_manager.authors
 
     return unless labels.length.positive?
 
@@ -32,6 +36,15 @@ class ConsoleManager
       book_label = labels.find { |label| label.id == book.label }
       book.label = book_label
       book_label.add_item(book)
+    end
+
+    # Restore the relationship between Games and Authors
+    games.each do |game|
+      next if game.author.nil?
+
+      game_author = authors.find { |author| author.id == game.author }
+      game.author = game_author
+      game_author.add_item(game)
     end
   end
 
@@ -275,6 +288,8 @@ class ConsoleManager
     puts 'Saving data...'
     @labels_manager.save_to_file
     @books_manager.save_to_file
+    @game_manager.save_games_to_json # No argument should be provided here
+    @author_manager.save_authors_to_json('json/authors.json') # Provide the filename as an argument
     puts 'Your catalog has been saved.'
     puts 'Thank you for using this app!'
   end
