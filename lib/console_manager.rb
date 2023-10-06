@@ -1,13 +1,34 @@
 require 'date'
 require_relative 'books_manager'
+require_relative 'labels_manager'
 require_relative 'music_manager'
 require_relative 'genre_manager'
 
 class ConsoleManager
   def initialize
     @books_manager = BooksManager.new
+    @labels_manager = LabelsManager.new
     @music_manager = MusicManager.new
     @genres_manager = GenreManager.new
+
+    # load data from files if files exist
+    # Note: the order of the following statements is important
+    @labels_manager.load_from_file
+    @books_manager.load_from_file
+
+    # Restore the relationship between Books and Labels
+    labels = @labels_manager.labels_list
+    books = @books_manager.books_list
+
+    return unless labels.length.positive?
+
+    books.each do |book|
+      next if book.label.nil?
+
+      book_label = labels.find { |label| label.id == book.label }
+      book.label = book_label
+      book_label.add_item(book)
+    end
   end
 
   # add a book
@@ -35,11 +56,27 @@ class ConsoleManager
     print 'Archived (Y/N): '
     archived = gets.chomp.upcase
 
-    # Action
-    @books_manager.add_book(publisher, cover_state, publish_date, archived == 'Y')
+    new_book = @books_manager.add_book(publisher, cover_state, publish_date, archived == 'Y')
 
+    add_label(new_book)
     # Feedback
     puts "\nBook has been registered successfully.\n\n"
+  end
+
+  def add_label(book)
+    # Add book label?
+    print 'Do you want to add a label to this book? (Y/N)'
+    want_label = gets.chomp.upcase
+
+    return unless want_label == 'Y'
+
+    print 'Label title: '
+    label_title = gets.chomp
+    print 'Label color: '
+    label_color = gets.chomp
+
+    new_label = @labels_manager.add_label(label_title, label_color)
+    book.label = new_label
   end
 
   # list all books
@@ -49,7 +86,8 @@ class ConsoleManager
       puts 'Here are all the books in your catalog:'
       books.each_with_index do |book, _index|
         puts "Publisher: #{book.publisher}, Cover state: #{book.cover_state}, " \
-             "Publish Date: #{book.publish_date}, Archived: #{book.archived ? 'Yes' : 'No'}"
+             "Publish Date: #{book.publish_date}, Archived: #{book.archived ? 'Yes' : 'No'}, " \
+             "Label: #{book.label ? book.label.title : 'N/A'}"
       end
     else
       puts "\nThere are no registered books."
@@ -143,8 +181,7 @@ class ConsoleManager
 
   # list all labels
   def list_all_labels
-    labels = @books_manager.books_list.map(&:label).compact
-    # TODO: add labels also from other catalog item types
+    labels = @labels_manager.labels_list
     if labels.length.positive?
       puts 'Here are all the labels in your catalog:'
       labels.each_with_index do |label, _index|
@@ -161,6 +198,10 @@ class ConsoleManager
 
   # exit app
   def exit
+    puts 'Saving data...'
+    @labels_manager.save_to_file
+    @books_manager.save_to_file
+    puts 'Your catalog has been saved.'
     puts 'Thank you for using this app!'
   end
 end
