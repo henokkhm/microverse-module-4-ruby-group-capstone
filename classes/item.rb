@@ -34,10 +34,10 @@ class Item
       'id' => @id,
       'publish_date' => @publish_date,
       'archived' => @archived,
-      'genre_id' => extract_id(genre),
-      'author_id' => extract_id(author),
-      'source_id' => extract_id(source),
-      'label_id' => extract_id(label)
+      'genre' => extract_id(genre),
+      'author' => extract_id(author),
+      'source' => extract_id(source),
+      'label' => extract_id(label)
     }
   end
 

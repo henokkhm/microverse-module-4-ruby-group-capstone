@@ -36,7 +36,7 @@ class ConsoleManager
     
     genres = @genres_manager.genres_list
     musics = @music_manager.music_list
-    return unless labels.length.positive?
+    return unless genres.length.positive?
 
     musics.each do |music|
       next if music.genre.nil?
