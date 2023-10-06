@@ -6,6 +6,7 @@ class Game < Item
     @title = title
     @multiplayer = multiplayer
     @last_played_at = last_played_at
+    @author = nil
   end
 
   def can_be_archived?
