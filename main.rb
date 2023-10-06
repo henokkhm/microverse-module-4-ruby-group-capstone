@@ -23,15 +23,15 @@ module Main
     when '6'
       puts 'performing action #6'
     when '7'
-      puts 'performing action #7'
+      console_manager.add_game
     when '8'
-      puts 'performing action #8'
+      console_manager.list_all_games
     when '9'
       console_manager.list_all_genres
     when '10'
       console_manager.list_all_labels
     when '11'
-      puts 'performing action #11'
+      console_manager.list_all_authors
     when '12'
       puts 'performing action #12'
     when '13'

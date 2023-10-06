@@ -1,9 +1,16 @@
-class Author
-  attr_accessor :name, :items
+require_relative 'item'
 
-  def initialize(name)
-    @name = name
+class Author
+  attr_accessor :first_name, :last_name, :items
+
+  def initialize(first_name, last_name)
+    @first_name = first_name
+    @last_name = last_name
     @items = []
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
   def add_item(item)
