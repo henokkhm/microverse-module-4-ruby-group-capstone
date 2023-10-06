@@ -26,8 +26,27 @@ class GameManager
     end
   end
 
-  def load_games_from_json(filename)
-    games_data = JSON.parse(File.read(filename))
-    @games_list = games_data.map { |data| Game.from_hash(data) }
+  def load_games_from_json
+    file_path = 'json/games.json'
+    return unless File.exist?(file_path)
+
+    game_data = JSON.parse(File.read(file_path))
+    game_data.each do |game_hash|
+      title = game_hash['title']
+      publish_date = Date.parse(game_hash['publish_date'])
+      last_played_at = Date.parse(game_hash['last_played_at'])
+      archived = game_hash['archived'] == 'true'
+      multiplayer = game_hash['multiplayer'] == 'true'
+
+      game = add_game(title, multiplayer, last_played_at, publish_date, archived)
+      game.id = game_hash['id']
+
+      # Temoporarily store ids of properties, the associations will be restored once
+      # the .json files for Genre, Author, Source, and Label are loaded
+      game.genre = game_hash['genre_id']
+      game.author = game_hash['author_id']
+      game.source = game_hash['source_id']
+      game.label = game_hash['label_id']
+    end
   end
 end

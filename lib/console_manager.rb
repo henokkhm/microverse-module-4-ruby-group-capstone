@@ -19,8 +19,8 @@ class ConsoleManager
     # Note: the order of the following statements is important
     @labels_manager.load_from_file
     @books_manager.load_from_file
-    @game_manager.load_games_from_json('json/games.json') # Load game data from JSON file
-    @author_manager.load_authors_from_json('json/authors.json')
+    @game_manager.load_games_from_json
+    @author_manager.load_authors_from_json
     @genres_manager.load_from_file
     @music_manager.load_from_file
   end
@@ -180,8 +180,6 @@ class ConsoleManager
     music.genre = new_genre
   end
 
-  # list all books
-
   # list all music albums
   def list_all_music
     musics = @music_manager.music_list
@@ -209,11 +207,18 @@ class ConsoleManager
     multiplayer = gets.chomp.upcase
     print 'Last Played Date (YYYY/MM/DD): '
     last_played_date = gets.chomp
+
+    # Input validation
+    date_pattern = %r{\A\d{4}/\d{2}/\d{2}\z}
+    until last_played_date.match?(date_pattern)
+      puts "\nPlease enter the date in this format: YYYY/MM/DD"
+      last_played_date = gets.chomp
+    end
+
     print 'Publish Date (YYYY/MM/DD): '
     publish_date = gets.chomp
 
     # Input validation
-    date_pattern = %r{\A\d{4}/\d{2}/\d{2}\z}
     until publish_date.match?(date_pattern)
       puts "\nPlease enter the date in this format: YYYY/MM/DD"
       publish_date = gets.chomp
@@ -292,7 +297,7 @@ class ConsoleManager
 
   # list all authors
   def list_all_authors
-    authors = @author_manager.authors
+    authors = @author_manager.authors_list
     if authors.length.positive?
       puts 'Here are all the authors in your catalog:'
       authors.each_with_index do |author, index|
@@ -307,12 +312,17 @@ class ConsoleManager
 
   # exit app
   def exit
-    puts 'Saving data...'
+    puts 'Saving Labels...'
     @labels_manager.save_to_file
+    puts 'Saving Books...'
     @books_manager.save_to_file
-    @game_manager.save_games_to_json # No argument should be provided here
-    @author_manager.save_authors_to_json('json/authors.json') # Provide the filename as an argument
+    puts 'Saving Games...'
+    @game_manager.save_games_to_json
+    puts 'Saving Authors...'
+    @author_manager.save_authors_to_json
+    puts 'Saving Genres...'
     @genres_manager.save_to_file
+    puts 'Saving Music...'
     @music_manager.save_to_file
     puts 'Your catalog has been saved.'
     puts 'Your Album has been saved.'

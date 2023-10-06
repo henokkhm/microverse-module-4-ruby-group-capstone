@@ -21,7 +21,6 @@ class Game < Item
     game_hash['title'] = @title
     game_hash['multiplayer'] = @multiplayer.to_s
     game_hash['last_played_at'] = @last_played_at.to_s
-    game_hash['author_id'] = @author ? @author.id : nil
     game_hash
   end
 
