@@ -3,7 +3,7 @@ require_relative 'item'
 class Author < Item
   attr_accessor :first_name, :last_name, :items
 
-  def initialize(first_name, last_name, publish_date = nil, archived = false)
+  def initialize(first_name, last_name, publish_date: nil, archived: false)
     super(publish_date, archived)
     @first_name = first_name
     @last_name = last_name
@@ -18,6 +18,6 @@ class Author < Item
     return unless item.can_be_archived?
 
     @items << item
-    item.author = self
+    item.set_author(self)
   end
 end
