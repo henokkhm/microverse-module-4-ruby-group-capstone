@@ -19,7 +19,11 @@ class ConsoleManager
     # Note: the order of the following statements is important
     @labels_manager.load_from_file
     @books_manager.load_from_file
+    @genres_manager.load_from_file
+    @music_manager.load_from_file
+  end
 
+  def restore_label_book_relation
     # Restore the relationship between Books and Labels
     labels = @labels_manager.labels_list
     books = @books_manager.books_list
@@ -32,6 +36,21 @@ class ConsoleManager
       book_label = labels.find { |label| label.id == book.label }
       book.label = book_label
       book_label.add_item(book)
+    end
+  end
+
+  def restore_music_genre_relation
+    # Restore the relationship between Music Albums and Genre
+    genres = @genres_manager.genres_list
+    musics = @music_manager.music_list
+    return unless genres.length.positive?
+
+    musics.each do |music|
+      next if music.genre.nil?
+
+      music_genre = genres.find { |genre| genre.id == music.genre }
+      music.genre = music_genre
+      music_genre.add_item(music)
     end
   end
 
@@ -230,7 +249,7 @@ class ConsoleManager
 
   # list all genres
   def list_all_genres
-    genres = @music_manager.music_list.map(&:genre).compact
+    genres = @genres_manager.genres_list
     # TODO: add genres also from other catalog item types
     if genres.length.positive?
       puts 'Here are all the genres in your catalog:'
@@ -275,7 +294,10 @@ class ConsoleManager
     puts 'Saving data...'
     @labels_manager.save_to_file
     @books_manager.save_to_file
+    @genres_manager.save_to_file
+    @music_manager.save_to_file
     puts 'Your catalog has been saved.'
+    puts 'Your Album has been saved.'
     puts 'Thank you for using this app!'
   end
 end

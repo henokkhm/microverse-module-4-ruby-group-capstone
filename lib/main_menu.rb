@@ -1,6 +1,5 @@
 module MainMenu
   @menu = '
-This application lets you keep track of all your 📖 books, 💿 music albums, 🎥 movies, and 🎮 games.
 Please select an action from the list below:
 
 1. Add a book

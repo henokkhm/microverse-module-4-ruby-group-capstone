@@ -1,4 +1,5 @@
 require_relative '../classes/music_album'
+require 'date'
 
 class MusicManager
   def initialize
@@ -11,5 +12,35 @@ class MusicManager
     music = MusicAlbum.new(publish_date, on_spotify, archived)
     @music_list.push(music)
     music
+  end
+
+  def save_to_file
+    file_path = 'json/musics.json'
+    puts 'saving musics'
+    musics_data = @music_list.map(&:to_hash)
+    File.open(file_path, 'w') do |file|
+      file.puts JSON.pretty_generate(musics_data)
+    end
+  end
+
+  def load_from_file
+    file_path = 'json/musics.json'
+    return unless File.exist?(file_path)
+
+    music_data = JSON.parse(File.read(file_path))
+    music_data.each do |music_hash|
+      publish_date = Date.parse(music_hash['publish_date'])
+      archived = music_hash['archived'] == 'true'
+      on_spotify = music_hash['on_spotify'] == 'true'
+      music = add_music(publish_date, on_spotify, archived)
+      music.id = music_hash['id']
+
+      # Temoporarily store ids of properties, the associations will be restored once
+      # the .json files for Genre, Author, Source, and Label are loaded
+      music.genre = music_hash['genre_id']
+      music.author = music_hash['author_id']
+      music.source = music_hash['source_id']
+      music.label = music_hash['label_id']
+    end
   end
 end
