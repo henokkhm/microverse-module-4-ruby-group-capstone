@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "publish_date": "2017-03-03",
+    "archived": false,
+    "genre": null,
+    "author": null,
+    "source": null,
+    "label": null,
+    "title": "The Legend of Zelda: Breath of the Wild",
+    "multiplayer": "false",
+    "last_played_at": "2022-05-15",
+    "author_id": null
+  },
+  {
+    "id": 2,
+    "publish_date": "2013-09-17",
+    "archived": false,
+    "genre": null,
+    "author": null,
+    "source": null,
+    "label": null,
+    "title": "Grand Theft Auto V",
+    "multiplayer": "false",
+    "last_played_at": "2022-06-20",
+    "author_id": null
+  }
+]

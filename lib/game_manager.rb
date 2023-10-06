@@ -16,4 +16,18 @@ class GameManager
   def authors_list
     authors
   end
+
+  def save_games_to_json
+    file_path = 'json/games.json'
+    File.open(file_path, 'w') do |file|
+      json_data = @games_list.map(&:to_hash)
+
+      file.puts JSON.pretty_generate(json_data)
+    end
+  end
+
+  def load_games_from_json(filename)
+    games_data = JSON.parse(File.read(filename))
+    @games_list = games_data.map { |data| Game.from_hash(data) }
+  end
 end
