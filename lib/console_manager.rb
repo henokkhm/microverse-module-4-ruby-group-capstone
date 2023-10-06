@@ -3,6 +3,7 @@ require_relative 'books_manager'
 require_relative 'music_manager'
 require_relative 'game_manager'
 require_relative 'genre_manager'
+require_relative 'author_manager'
 
 class ConsoleManager
   def initialize
@@ -10,6 +11,7 @@ class ConsoleManager
     @music_manager = MusicManager.new
     @game_manager = GameManager.new
     @genres_manager = GenreManager.new
+    @author_manager = AuthorManager.new
   end
 
   # add a book
@@ -126,39 +128,53 @@ class ConsoleManager
   # list all movies
 
   # add a game
-  def add_game
-    # Prompt
-    puts
-    puts 'Please provide the details of the game.'
-    print 'Title: '
-    title = gets.chomp
-    print 'Multiplayer (Y/N): '
-    multiplayer = gets.chomp.upcase
-    print 'Last Played Date (YYYY/MM/DD): '
-    last_played_date = gets.chomp
-    print 'Publish Date (YYYY/MM/DD): '
+def add_game
+  puts 'Please provide the details of the game.'
+  print 'Title: '
+  title = gets.chomp
+  print 'Multiplayer (Y/N): '
+  multiplayer = gets.chomp.upcase
+  print 'Last Played Date (YYYY/MM/DD): '
+  last_played_date = gets.chomp
+  print 'Publish Date (YYYY/MM/DD): '
+  publish_date = gets.chomp
+
+  # Input validation
+  date_pattern = %r{\A\d{4}/\d{2}/\d{2}\z}
+  until publish_date.match?(date_pattern)
+    puts "\nPlease enter the date in this format: YYYY/MM/DD"
     publish_date = gets.chomp
-
-    # Input validation
-    date_pattern = %r{\A\d{4}/\d{2}/\d{2}\z}
-    until publish_date.match?(date_pattern)
-      puts "\nPlease enter the date in this format: YYYY/MM/DD"
-      publish_date = gets.chomp
-    end
-
-    # Parse dates into Date objects
-    last_played_at = Date.parse(last_played_date)
-    publish_date = Date.parse(publish_date)
-
-    print 'Archived (Y/N): '
-    archived = gets.chomp.upcase
-
-    # Action
-    @game_manager.add_game(title, multiplayer == 'Y', last_played_at, publish_date, archived == 'Y')
-
-    # Feedback
-    puts "\nGame has been registered successfully.\n\n"
   end
+
+  # Parse dates into Date objects
+  last_played_at = Date.parse(last_played_date)
+  publish_date = Date.parse(publish_date)
+
+  print 'Archived (Y/N): '
+  archived = gets.chomp.upcase
+
+  # Action
+  game = @game_manager.add_game(title, multiplayer == 'Y', last_played_at, publish_date, archived == 'Y')
+
+  add_author(game)
+
+  puts "\nGame has been registered successfully.\n\n"
+end
+
+def add_author(game)
+  print 'Do you want to add an author to this game? (Y/N)'
+  want_author = gets.chomp.upcase
+
+  return unless want_author == 'Y'
+
+  print 'Author First Name: '
+  first_name = gets.chomp
+  print 'Author Last Name: '
+  last_name = gets.chomp
+
+  new_author = @author_manager.add_author(first_name, last_name)
+  game.author = new_author
+end
 
   # List all games
   def list_all_games
@@ -204,7 +220,7 @@ class ConsoleManager
 
   # list all authors
   def list_all_authors
-    authors = @game_manager.authors_list
+    authors = @author_manager.authors_list
     if authors.length.positive?
       puts 'Here are all the authors in your catalog:'
       authors.each_with_index do |author, index|
