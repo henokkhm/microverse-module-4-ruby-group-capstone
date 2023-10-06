@@ -21,7 +21,11 @@ class ConsoleManager
     @books_manager.load_from_file
     @game_manager.load_games_from_json('json/games.json') # Load game data from JSON file
     @author_manager.load_authors_from_json('json/authors.json')
+    @genres_manager.load_from_file
+    @music_manager.load_from_file
+  end
 
+  def restore_label_book_relation
     # Restore the relationship between Books and Labels
     labels = @labels_manager.labels_list
     books = @books_manager.books_list
@@ -45,6 +49,21 @@ class ConsoleManager
       game_author = authors.find { |author| author.id == game.author }
       game.author = game_author
       game_author.add_item(game)
+    end
+  end
+
+  def restore_music_genre_relation
+    # Restore the relationship between Music Albums and Genre
+    genres = @genres_manager.genres_list
+    musics = @music_manager.music_list
+    return unless genres.length.positive?
+
+    musics.each do |music|
+      next if music.genre.nil?
+
+      music_genre = genres.find { |genre| genre.id == music.genre }
+      music.genre = music_genre
+      music_genre.add_item(music)
     end
   end
 
@@ -243,7 +262,7 @@ class ConsoleManager
 
   # list all genres
   def list_all_genres
-    genres = @music_manager.music_list.map(&:genre).compact
+    genres = @genres_manager.genres_list
     # TODO: add genres also from other catalog item types
     if genres.length.positive?
       puts 'Here are all the genres in your catalog:'
@@ -290,7 +309,10 @@ class ConsoleManager
     @books_manager.save_to_file
     @game_manager.save_games_to_json # No argument should be provided here
     @author_manager.save_authors_to_json('json/authors.json') # Provide the filename as an argument
+    @genres_manager.save_to_file
+    @music_manager.save_to_file
     puts 'Your catalog has been saved.'
+    puts 'Your Album has been saved.'
     puts 'Thank you for using this app!'
   end
 end

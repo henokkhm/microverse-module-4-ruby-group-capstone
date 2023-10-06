@@ -19,9 +19,9 @@ module Main
     when '4'
       console_manager.list_all_music
     when '5'
-      puts 'performing List of genre #5'
+      puts '\'Add a movie\' action not implemented.'
     when '6'
-      puts 'performing action #6'
+      puts '\'List all movies\' action not implemented.'
     when '7'
       console_manager.add_game
     when '8'
@@ -33,7 +33,7 @@ module Main
     when '11'
       console_manager.list_all_authors
     when '12'
-      puts 'performing action #12'
+      puts '\'List all sources\' action not implemented.'
     when '13'
       console_manager.exit
       break
