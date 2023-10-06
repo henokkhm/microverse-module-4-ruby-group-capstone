@@ -16,7 +16,6 @@ class MusicManager
 
   def save_to_file
     file_path = 'json/musics.json'
-    puts 'saving musics'
     musics_data = @music_list.map(&:to_hash)
     File.open(file_path, 'w') do |file|
       file.puts JSON.pretty_generate(musics_data)

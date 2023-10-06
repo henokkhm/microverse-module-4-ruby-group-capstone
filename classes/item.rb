@@ -46,6 +46,7 @@ class Item
   def extract_id(item)
     return nil if item.nil?
 
+    p item.inspect
     item.id
   end
 end

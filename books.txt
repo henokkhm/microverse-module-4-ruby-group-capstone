@@ -1,0 +1,26 @@
+1
+Publisher 1
+good 
+2020/05/09
+No
+No
+1
+Publisher 2
+bad 
+2010/05/09
+Y
+Y
+Gift
+green
+1
+Publisher 3
+bad 
+2005/06/11
+No
+Y
+Classic
+red
+2
+10
+13
+

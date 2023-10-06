@@ -16,7 +16,6 @@ class BooksManager
 
   def save_to_file
     file_path = 'json/books.json'
-    puts 'saving books'
     books_data = @books_list.map(&:to_hash)
     File.open(file_path, 'w') do |file|
       file.puts JSON.pretty_generate(books_data)
