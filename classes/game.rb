@@ -17,10 +17,9 @@ class Game < Item
 
   def to_hash
     game_hash = super
-    game_hash['id'] = @id
     game_hash['title'] = @title
-    game_hash['multiplayer'] = @multiplayer.to_s
-    game_hash['last_played_at'] = @last_played_at.to_s
+    game_hash['multiplayer'] = @multiplayer
+    game_hash['last_played_at'] = @last_played_at
     game_hash
   end
 

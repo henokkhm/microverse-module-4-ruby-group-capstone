@@ -35,10 +35,10 @@ class BooksManager
 
       # Temoporarily store ids of properties, the associations will be restored once
       # the .json files for Genre, Author, Source, and Label are loaded
-      book.genre = book_hash['genre_id']
-      book.author = book_hash['author_id']
-      book.source = book_hash['source_id']
-      book.label = book_hash['label_id']
+      book.genre = book_hash['genre']
+      book.author = book_hash['author']
+      book.source = book_hash['source']
+      book.label = book_hash['label']
     end
   end
 end
