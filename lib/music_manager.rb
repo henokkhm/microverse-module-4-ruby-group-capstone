@@ -36,10 +36,10 @@ class MusicManager
 
       # Temoporarily store ids of properties, the associations will be restored once
       # the .json files for Genre, Author, Source, and Label are loaded
-      music.genre = music_hash['genre_id']
-      music.author = music_hash['author_id']
-      music.source = music_hash['source_id']
-      music.label = music_hash['label_id']
+      music.genre = music_hash['genre']
+      music.author = music_hash['author']
+      music.source = music_hash['source']
+      music.label = music_hash['label']
     end
   end
 end

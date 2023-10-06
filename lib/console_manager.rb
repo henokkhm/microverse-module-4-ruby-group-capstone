@@ -23,6 +23,10 @@ class ConsoleManager
     @author_manager.load_authors_from_json
     @genres_manager.load_from_file
     @music_manager.load_from_file
+
+    restore_label_book_relation
+    restore_music_genre_relation
+    restore_games_authors_relation
   end
 
   def restore_label_book_relation
@@ -58,7 +62,7 @@ class ConsoleManager
   def restore_games_authors_relation
     # Restore the relationship between Games and Authors
     games = @game_manager.games_list
-    authors = @author_manager.authors
+    authors = @author_manager.authors_list
     return unless games.length.positive?
 
     games.each do |game|

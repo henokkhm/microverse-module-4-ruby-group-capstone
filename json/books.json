@@ -1,6 +1,6 @@
 [
   {
-    "id": 9037,
+    "id": 7719,
     "publish_date": "2020-05-09",
     "archived": false,
     "genre": null,
@@ -11,24 +11,24 @@
     "cover_state": "good "
   },
   {
-    "id": 9521,
+    "id": 8319,
     "publish_date": "2010-05-09",
     "archived": false,
     "genre": null,
     "author": null,
     "source": null,
-    "label": null,
+    "label": 9986,
     "publisher": "Publisher 2",
     "cover_state": "bad "
   },
   {
-    "id": 9644,
+    "id": 9300,
     "publish_date": "2005-06-11",
     "archived": false,
     "genre": null,
     "author": null,
     "source": null,
-    "label": null,
+    "label": 4273,
     "publisher": "Publisher 3",
     "cover_state": "bad "
   }

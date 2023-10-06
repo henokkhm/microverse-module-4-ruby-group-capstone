@@ -43,10 +43,10 @@ class GameManager
 
       # Temoporarily store ids of properties, the associations will be restored once
       # the .json files for Genre, Author, Source, and Label are loaded
-      game.genre = game_hash['genre_id']
-      game.author = game_hash['author_id']
-      game.source = game_hash['source_id']
-      game.label = game_hash['label_id']
+      game.genre = game_hash['genre']
+      game.author = game_hash['author']
+      game.source = game_hash['source']
+      game.label = game_hash['label']
     end
   end
 end
