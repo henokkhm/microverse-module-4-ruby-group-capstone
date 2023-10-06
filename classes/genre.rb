@@ -1,6 +1,6 @@
 class Genre
-  attr_accessor :name , :id
-  attr_reader  :items
+  attr_accessor :name, :id
+  attr_reader :items
 
   def initialize(name)
     @id = Random.rand(1...1000)
@@ -17,7 +17,7 @@ class Genre
   def to_hash
     {
       'id' => @id,
-      'name' => @name,
+      'name' => @name
     }
   end
 end

@@ -32,7 +32,7 @@ class MusicManager
       publish_date = Date.parse(music_hash['publish_date'])
       archived = music_hash['archived'] == 'true'
       on_spotify = music_hash['on_spotify'] == 'true'
-      music = add_music(publish_date,on_spotify , archived)
+      music = add_music(publish_date, on_spotify, archived)
       music.id = music_hash['id']
 
       # Temoporarily store ids of properties, the associations will be restored once

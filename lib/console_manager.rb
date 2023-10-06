@@ -33,7 +33,6 @@ class ConsoleManager
       book_label.add_item(book)
     end
 
-    
     genres = @genres_manager.genres_list
     musics = @music_manager.music_list
     return unless genres.length.positive?
@@ -183,7 +182,7 @@ class ConsoleManager
 
   # list all genres
   def list_all_genres
-    genres = @music_manager.music_list.map(&:genre).compact
+    genres = @genres_manager.genres_list
     # TODO: add genres also from other catalog item types
     if genres.length.positive?
       puts 'Here are all the genres in your catalog:'
