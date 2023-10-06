@@ -220,7 +220,7 @@ end
 
   # list all authors
   def list_all_authors
-    authors = @author_manager.authors_list
+    authors = @author_manager.authors
     if authors.length.positive?
       puts 'Here are all the authors in your catalog:'
       authors.each_with_index do |author, index|
