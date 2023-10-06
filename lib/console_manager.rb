@@ -29,9 +29,6 @@ class ConsoleManager
     # Restore the relationship between Books and Labels
     labels = @labels_manager.labels_list
     books = @books_manager.books_list
-    games = @game_manager.games_list
-    authors = @author_manager.authors
-
     return unless labels.length.positive?
 
     books.each do |book|
@@ -40,15 +37,6 @@ class ConsoleManager
       book_label = labels.find { |label| label.id == book.label }
       book.label = book_label
       book_label.add_item(book)
-    end
-
-    # Restore the relationship between Games and Authors
-    games.each do |game|
-      next if game.author.nil?
-
-      game_author = authors.find { |author| author.id == game.author }
-      game.author = game_author
-      game_author.add_item(game)
     end
   end
 
@@ -64,6 +52,21 @@ class ConsoleManager
       music_genre = genres.find { |genre| genre.id == music.genre }
       music.genre = music_genre
       music_genre.add_item(music)
+    end
+  end
+
+  def restore_games_authors_relation
+    # Restore the relationship between Games and Authors
+    games = @game_manager.games_list
+    authors = @author_manager.authors
+    return unless games.length.positive?
+
+    games.each do |game|
+      next if game.author.nil?
+
+      game_author = authors.find { |author| author.id == game.author }
+      game.author = game_author
+      game_author.add_item(game)
     end
   end
 
