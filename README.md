@@ -17,6 +17,7 @@
     - [Testing](#testing)
     - [Linting](#linting)
   - [👥 Authors ](#-authors-)
+  - [📹 Presentation Video ](#-presentation-video-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
   - [⭐️ Show your support ](#️-show-your-support-)
@@ -127,6 +128,13 @@ Finally, run `bundle exec rubocop` to run all the tests.
 - Twitter: [@briton_otieno4](https://twitter.com/briton_otieno4)
 - LinkedIn: [briton-otieno](https://linkedin.com/in/briton-otieno)
 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## 📹 Presentation Video <a name="presentation-video"></a>
+
+Link to presentation video: https://drive.google.com/file/d/1lXJ8mjiU-fCF_0bRdWgwSLNJw69qG7nI/view?usp=sharing
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
