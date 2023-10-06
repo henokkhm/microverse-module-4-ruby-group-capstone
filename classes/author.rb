@@ -19,4 +19,18 @@ class Author
     @items << item
     item.set_author(self)
   end
+
+  def to_hash
+    {
+      'first_name' => @first_name,
+      'last_name' => @last_name
+    }
+  end
+
+  def self.from_hash(author_hash)
+    Author.new(
+      author_hash['first_name'],
+      author_hash['last_name']
+    )
+  end
 end
