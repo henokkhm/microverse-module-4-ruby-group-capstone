@@ -20,8 +20,9 @@ class GameManager
   def save_games_to_json
     file_path = 'json/games.json'
     File.open(file_path, 'w') do |file|
-      json_data = @games_list.map(&:to_hash)
-      game.to_hash
+      json_data = @games_list.map do |game|
+        game.to_hash
+      end
 
       file.puts JSON.pretty_generate(json_data)
     end
