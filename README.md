@@ -134,7 +134,7 @@ Finally, run `bundle exec rubocop` to run all the tests.
 
 ## 📹 Presentation Video <a name="presentation-video"></a>
 
-Link to presentation video: https://drive.google.com/file/d/1lXJ8mjiU-fCF_0bRdWgwSLNJw69qG7nI/view?usp=sharing
+Link to presentation video: https://drive.google.com/file/d/1qezH4GPZ-seXiaqx3BPliizeq_6X4vre/view?usp=sharing
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
