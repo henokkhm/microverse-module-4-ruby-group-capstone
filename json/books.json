@@ -1,0 +1,35 @@
+[
+  {
+    "id": 7719,
+    "publish_date": "2020-05-09",
+    "archived": false,
+    "genre": null,
+    "author": null,
+    "source": null,
+    "label": null,
+    "publisher": "Publisher 1",
+    "cover_state": "good "
+  },
+  {
+    "id": 8319,
+    "publish_date": "2010-05-09",
+    "archived": false,
+    "genre": null,
+    "author": null,
+    "source": null,
+    "label": 9986,
+    "publisher": "Publisher 2",
+    "cover_state": "bad "
+  },
+  {
+    "id": 9300,
+    "publish_date": "2005-06-11",
+    "archived": false,
+    "genre": null,
+    "author": null,
+    "source": null,
+    "label": 4273,
+    "publisher": "Publisher 3",
+    "cover_state": "bad "
+  }
+]

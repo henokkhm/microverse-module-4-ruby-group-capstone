@@ -1,0 +1,50 @@
+[
+  {
+    "id": null,
+    "publish_date": "2020-12-12",
+    "archived": false,
+    "genre": null,
+    "author": 5358,
+    "source": null,
+    "label": null,
+    "title": "The Legend of Zelda: Breath of the Wild",
+    "multiplayer": false,
+    "last_played_at": "2010-12-10"
+  },
+  {
+    "id": null,
+    "publish_date": "2021-12-12",
+    "archived": false,
+    "genre": null,
+    "author": null,
+    "source": null,
+    "label": null,
+    "title": "GTA V",
+    "multiplayer": false,
+    "last_played_at": "2014-12-10"
+  },
+  {
+    "id": null,
+    "publish_date": "2010-04-10",
+    "archived": false,
+    "genre": null,
+    "author": null,
+    "source": null,
+    "label": null,
+    "title": "Age of Empires",
+    "multiplayer": false,
+    "last_played_at": "2006-02-08"
+  },
+  {
+    "id": null,
+    "publish_date": "2018-05-06",
+    "archived": false,
+    "genre": null,
+    "author": 8524,
+    "source": null,
+    "label": null,
+    "title": "Portal",
+    "multiplayer": false,
+    "last_played_at": "2013-02-04"
+  }
+]

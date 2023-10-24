@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1654,
+    "publish_date": "2020-05-09",
+    "archived": false,
+    "genre": 953,
+    "author": null,
+    "source": null,
+    "label": null,
+    "on_spotify": false
+  },
+  {
+    "id": 3764,
+    "publish_date": "2010-07-04",
+    "archived": false,
+    "genre": 488,
+    "author": null,
+    "source": null,
+    "label": null,
+    "on_spotify": false
+  },
+  {
+    "id": 8402,
+    "publish_date": "2012-02-02",
+    "archived": false,
+    "genre": null,
+    "author": null,
+    "source": null,
+    "label": null,
+    "on_spotify": false
+  }
+]
